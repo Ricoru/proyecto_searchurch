@@ -44,7 +44,7 @@
             	<div class="iphone span1">
                 </div>
                 <div class="register span10">
-                    <form action="" method="post">
+                    <form id="frmRegistrar" name="frmRegistrar" action-1="<?php echo base_url();?>iglesias/registrar" method="post">
                     	<fieldset>
 	                        <h2>&nbsp;REGISTRA TU <span class="red"><strong>IGLESIA</strong></span></h2>
 	                        <label for="iglesia">Iglesia *</label>
@@ -67,11 +67,11 @@
                         </fieldset>
                         <fieldset class="gllpLatlonPicker">
 							<div class="gllpMap">Google Maps</div>
-							<input type="hidden" class="gllpLatitude" id="gllpLatitude" value="-11.350796722383672" />
-							<input type="hidden" class="gllpLongitude" id="gllpLongitude" value="-75.41015625" />
+							<input type="hidden" class="gllpLatitude" name="gllpLatitude" id="gllpLatitude" value="-11.350796722383672" />
+							<input type="hidden" class="gllpLongitude" name="gllpLongitude" id="gllpLongitude" value="-75.41015625" />
 							<input type="hidden" class="gllpZoom" value="6" />
 						</fieldset>
-                        <button type="submit">REGISTRAR</button>
+                        <button id="btn-Iglesia" type="button" class="btn btn-primary ">Registrar</button>
                     </form>
                 </div>
                 <div class="iphone span1">
@@ -82,12 +82,24 @@
         <div class="footer">
             <div class="container">
                 <div class="row">
-                	<div class="span9">
+                	<div class="span8">
                 	</div>
-                	<div class="span3">
+                	<div class="span4">
                         <h4><a href="http://clmdevelopers.com/"> Copyright <span class="red">© CLM Developers.</span></a></h4>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="modal hide fade" id="modalRegistro">
+            <div class="modal-header">
+                <h3>Mensaje...!!</h3>
+            </div>
+            <div class="modal-body">
+                Registro Exitoso..!!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
 

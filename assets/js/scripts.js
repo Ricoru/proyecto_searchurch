@@ -1,6 +1,7 @@
 
 jQuery(document).ready(function() {
 
+    $("#modalRegistro").hide();
     /*
         Background slideshow
     */
@@ -19,8 +20,8 @@ jQuery(document).ready(function() {
     /*
         Form validation
     */
-    $('.register form').submit(
-        
+    $('#frmRegistrar').submit(
+
         function(event){
             
             event.preventDefault();
@@ -52,12 +53,66 @@ jQuery(document).ready(function() {
                 $(this).find("label[for='pais'] span").fadeIn('medium');
                 return false;
             }
+
+
             /*if(email == '') {
                 $(this).find("label[for='email']").append("<span style='display:none' class='red'> - Porfavor ingrese email valido.</span>");
                 $(this).find("label[for='email'] span").fadeIn('medium');
                 return false;
             }*/
-            //console.log(gllpLatitude,gllpLongitude);
+            //console.log($("#frmRegistrar").serializeObject());
+            /*$.ajax({
+                type: "POST",       
+                dataType: "JSON",
+                url: $("#frmRegistrar").attr("action"),
+                data: $("#frmRegistrar").serializeObject()
+            });*/
+
     });
+
+    $("#btn-Iglesia").click(function(event){
+        event.preventDefault();
+
+        $(this).find("label[for='iglesia']").html('Iglesia *');
+            $(this).find("label[for='encargado']").html('Pastor Principal *');
+            $(this).find("label[for='pais']").html('País *');
+            $(this).find("label[for='email']").html('Email');
+            
+            var nom_iglesia = $(this).find('input#nom_iglesia').val();
+            var encargado = $(this).find('input#encargado').val();
+            var pais = $(this).find('input#pais').val();
+            var email = $(this).find('input#email').val();
+            var gllpLatitude = $(this).find('input#gllpLatitude').val();
+            var gllpLongitude = $(this).find('input#gllpLongitude').val();
+
+            if(nom_iglesia == '') {
+                $(this).find("label[for='iglesia']").append("<span style='display:none' class='red'> - Porfavor ingrese el nombre de la Iglesia.</span>");
+                $(this).find("label[for='iglesia'] span").fadeIn('medium');
+                return false;
+            }
+            if(encargado == '') {
+                $(this).find("label[for='encargado']").append("<span style='display:none' class='red'> - Porfavor ingrese el nombre del Pastor.</span>");
+                $(this).find("label[for='encargado'] span").fadeIn('medium');
+                return false;
+            }
+            if(pais == '') {
+                $(this).find("label[for='pais']").append("<span style='display:none' class='red'> - Porfavor ingrese el País.</span>");
+                $(this).find("label[for='pais'] span").fadeIn('medium');
+                return false;
+            }
+
+            $.ajax({
+                url: $("#frmRegistrar").attr("action-1"),
+                data: $("#frmRegistrar").serialize(),
+                type: "Post",       
+                dataType: "json",
+                success: function(data) {
+                   //console.log(data);
+                   $('#modalRegistro').modal('show');
+                 }
+            });
+
+    });
+
 
 });
